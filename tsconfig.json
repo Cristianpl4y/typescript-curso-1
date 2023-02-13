@@ -1,0 +1,11 @@
+// tsconfig é o core do compilador typescript.
+{
+    "compilerOptions": {
+        "outDir": "dist/js", // Onde eles serão gerados após transformados para .js
+        "target": "ES6", // Versão do JS para qual sera transformado os arquivos .ts
+        "noEmitOnError": true // Dizendo que se o arquivo tiver um erro, o mesmo não será compilado
+    },
+    
+    // onde está a pasta com os arquivos que vão ser compilados.
+    "include": ["app/**/*"]
+}
