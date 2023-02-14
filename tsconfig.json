@@ -4,7 +4,9 @@
         "outDir": "dist/js", // Onde eles serão gerados após transformados para .js
         "target": "ES6", // Versão do JS para qual sera transformado os arquivos .ts
         "noEmitOnError": true, // Dizendo que se o arquivo tiver um erro, o mesmo não será compilado
-        "noImplicitAny": true  // Dizendo para não colocar implicitamente o valor Any nas variaveis.
+        "noImplicitAny": true,  // Dizendo para não colocar implicitamente o valor "Any" nas variaveis.
+        "removeComments": true, // Remove comentarios 
+        "strictNullChecks": true // Diz para o compilador TSC que pare de assumir implicitamente o tipo "null" para todos os tipos da aplicação.
     },
     
     // onde está a pasta com os arquivos que vão ser compilados.
