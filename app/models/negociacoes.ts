@@ -4,11 +4,11 @@ export class Negociacoes {
     // Exemplo de Generics
     private negociacoes: Negociacao[] = []
 
-    add(negociacao: Negociacao){
+    public add(negociacao: Negociacao){
         this.negociacoes.push(negociacao)
     }
 
-    lista(): readonly Negociacao[] {
+    public lista(): readonly Negociacao[] {
         return this.negociacoes
     }
 
