@@ -1,10 +1,23 @@
 export class View {
-    constructor(seletor) {
-        this.elemento = document.querySelector(seletor);
+    constructor(seletor, escapar) {
+        this.escapar = true;
+        const elemento = document.querySelector(seletor);
+        if (elemento) {
+            this.elemento = elemento;
+        }
+        else {
+            throw Error(`Seletor ${seletor} não existe no DOM. Verifique.`);
+        }
+        if (escapar) {
+            this.escapar = escapar;
+        }
     }
-    // Renderiza e atualiza o template no elemento que pego pelo constructor
     update(model) {
-        const template = this.template(model);
+        let template = this.template(model);
+        if (this.escapar) {
+            const expRemoveXSS = /<script>[\s\S]*?<\/script>/;
+            template = template.replace(expRemoveXSS, '');
+        }
         this.elemento.innerHTML = template;
     }
 }

@@ -1,6 +1,5 @@
 import { View } from './view.js';
 export class NegociacoesView extends View {
-    // Declarar o template da minha view
     template(model) {
         return `
             <table class="table table-hover table-bordered">

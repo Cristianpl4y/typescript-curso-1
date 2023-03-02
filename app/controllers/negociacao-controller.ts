@@ -3,6 +3,7 @@ import { MensagemView } from './../views/mensagem-view.js';
 import { NegociacoesView } from './../views/negociacoes-view.js';
 import { Negociacao } from './../models/negociacao.js';
 import { Negociacoes } from './../models/negociacoes.js';
+import { NegociacoesService } from '../services/negociacoes-service.js';
 export class NegociacaoController {
     private inputData: HTMLInputElement
     private inputQuantidade:  HTMLInputElement 
@@ -10,6 +11,7 @@ export class NegociacaoController {
     private negociacoes = new Negociacoes()
     private negociacoesView = new NegociacoesView('#negociacoesView')
     private mensagemView = new MensagemView('#mensagemView')
+    private negociacoesService = new NegociacoesService()
 
     constructor(){
         this.inputData = document.querySelector('#data') as HTMLInputElement // Ex de um casting explícito ( Eu estou forçando a mudança do tipo )
@@ -38,6 +40,21 @@ export class NegociacaoController {
         
         
     }
+
+
+    public async importarDados(): Promise<void> {
+        // Consumindo uma API
+       await this.negociacoesService.obterNegociacoes()
+        .then(arraydenegociacoes => {
+            // pego cada negociacao e adiciono 
+            for(let negociacao of arraydenegociacoes){
+                this.negociacoes.add(negociacao)
+            }
+            this.negociacoesView.update(this.negociacoes)
+            this.mensagemView.update('Importação dos dados adicionada com sucesso!')
+        })
+    }
+
 
     private diaUtil(date: Date): boolean {
         return date.getDay() > DiasDaSemana.DOMINGO && date.getDate() < DiasDaSemana.SABADO

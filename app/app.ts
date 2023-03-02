@@ -10,4 +10,10 @@ form.addEventListener('submit', event => {
 })
 
 
+const btnImporta = document.querySelector('#botao-importa') as HTMLFormElement
+if(btnImporta){
+    btnImporta.addEventListener('click', () => {
+        controller.importarDados();
+    })
+}
 
